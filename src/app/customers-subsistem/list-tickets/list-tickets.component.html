@@ -1,0 +1,29 @@
+
+<div *ngIf="tickets?.length == 0" class="alert alert-info no-tickets" role="alert">
+  <h3> You have no tickets </h3>
+</div>
+
+<table *ngIf="tickets?.length > 0" class="table ticket-list">
+  <tr>
+    <th> Ticket Id    </th>
+    <th> Title        </th>
+    <th> Category     </th>
+    <th> Description  </th>
+    <th> Delete       </th>
+  </tr>
+
+  <tr *ngFor="let ticket of tickets; trackBy: trackByTickets" (click)="onSelect(ticket)">
+    <td class="id-col">          {{ ticket.id                          }}</td>
+    <td class="title-col">       {{ ticket.title | truncate: 15        }}</td>
+    <td class="category-col">    {{ ticket.category                    }}</td>
+    <td class="description-col"> {{ ticket.description | truncate: 100  }}</td>
+    <td class="delete-ticket">
+      <button (click)="onDelete(ticket); $event.stopPropagation()" type="button" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-remove"></span> Remove
+      </button>
+    </td>
+  </tr>
+
+</table>
+
+
